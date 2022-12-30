@@ -1,16 +1,18 @@
-import Markdown from 'marked-react';
-import { createElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 import '../../node_modules/github-markdown-css/github-markdown.css';
+import { useParams } from 'react-router-dom';
 
-const Blog = ({ encoded_blog }) => {
+const Blog = () => {
   const [blog, setBlog] = useState("");
   const [html, setHtml] = useState("");
+
+  const { blog_no } = useParams();
 
   // runs only when the page renders initially
   useEffect(() => {
     (async () => {
-      const blog_ = await axios.get("http://localhost:4000/api/v1/blog/3");
+      const blog_ = await axios.get(`http://localhost:4000/api/v1/blog/${blog_no}`);
       setBlog(blog_.data.body);
     })();
   }, []);

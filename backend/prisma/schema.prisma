@@ -16,4 +16,5 @@ model Post {
   title     String   @unique
   createdAt DateTime @default(now())
   body      String
+  summery   String
 }

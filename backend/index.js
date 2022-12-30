@@ -31,6 +31,18 @@ function addPost(postObj) {
         });
     });
 }
+function updatePost(blogId_, value_) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield prisma.post.update({
+            where: {
+                blogId: blogId_
+            },
+            data: {
+                blogId: value_
+            }
+        });
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield prisma.$connect();
@@ -45,25 +57,32 @@ app.get('/api/v1/getBlogs', (req, res) => __awaiter(void 0, void 0, void 0, func
         blogs: yield prisma.post.findMany()
     });
 }));
-// This endpoint takes 2 things in request body
+// This endpoint takes 3 things in request body
 // 1. title -> title of the blog
 // 2. body -> body of the blog
+// 3. summery -> summery of the blog
 // example: 
 // {
-//     "title": "how i made a markdown parser"
-//     "body": "so let's understand whats a parser first..."
+//     "title": "how i made a markdown parser",
+//     "body": "so let's understand whats a parser first...",
+//     "summery": "exploring the topic of markdown parsing"
 // }
 app.post('/api/v1/create/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const blogs = yield getPosts();
-    let lastNum = blogs[blogs.length - 1]["blogId"];
     const data = req.body;
-    data['blogId'] = lastNum + 1;
+    if (blogs.length === 0) {
+        data['blogId'] = 1;
+    }
+    else {
+        data['blogId'] = blogs[blogs.length - 1].blogId + 1;
+    }
     addPost(data).catch((e) => {
         console.error(e);
         res.status(424).json({
             message: "failed to create, try again"
         });
     });
+    console.log(data['blogId']);
     res.json({
         message: "post created successfully"
     });
@@ -82,6 +101,40 @@ app.get('/api/v1/blog/:id', (req, res) => __awaiter(void 0, void 0, void 0, func
     else {
         res.json(blog);
     }
+}));
+app.delete('/api/v1/blog/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const allBlogs = yield prisma.post.findMany();
+    const n = parseInt(req.params.id);
+    const deleted = yield prisma.post.delete({
+        where: {
+            blogId: n
+        }
+    }).catch((e) => {
+        console.error(e);
+        res.send("record to delete does not exists");
+    });
+    for (let i = n + 1; i <= allBlogs.length; i++) {
+        yield prisma.post.update({
+            where: {
+                blogId: i
+            },
+            data: {
+                blogId: i - 1
+            }
+        });
+    }
+    if (deleted)
+        res.send("done betch");
+}));
+app.get('/api/v1/test', (res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma.post.deleteMany({
+        where: {
+            blogId: {
+                gt: 0
+            }
+        }
+    });
+    res.send("done betch");
 }));
 app.listen(4000, () => {
     console.log("server running at 4000");
