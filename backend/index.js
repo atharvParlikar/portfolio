@@ -126,7 +126,7 @@ app.delete('/api/v1/blog/:id', (req, res) => __awaiter(void 0, void 0, void 0, f
     if (deleted)
         res.send("done betch");
 }));
-app.get('/api/v1/test', (res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/api/v1/test', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     yield prisma.post.deleteMany({
         where: {
             blogId: {

@@ -31,8 +31,45 @@ const BlogsPage = () => {
 
   return (
     <div className="App w-screen h-screen flex justify-center">
-      <div className="container w-fit border-2 mt-28 rounded-lg border-gray-400 h-fit flex">
-        <div className="my-10 flex flex-col w-full justify-around h-full">
+      <div className="container w-fit border-2 mt-28 rounded-lg border-gray-400 h-fit flex flex-col">
+        {/* close buttons */}
+        <div className="h-7 w-full border-2 border-b-gray-400 rounded-t-lg flex flex-col justify-center">
+          {/* close buttons */}
+          <div className="flex ml-3">
+            <div className="mr-2 h-3 w-3 rounded-full bg-red-500"></div>
+            <div className="mr-2 h-3 w-3 rounded-full bg-yellow-500"></div>
+            <div className="mr-2 h-3 w-3 rounded-full bg-green-500"></div>
+          </div>
+        </div>
+        <nav className="w-11/12 flex justify-center mt-10 mx-auto">
+          <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
+            <li
+              onClick={() => {
+                window.location.href = "http://localhost:5173/";
+              }}
+              className="mx-5 cursor-pointer"
+            >
+              Home
+            </li>
+            <li
+              onClick={() => {
+                window.location.href = "http://localhost:5173/projects";
+              }}
+              className="mx-5 cursor-pointer"
+            >
+              Projects
+            </li>
+            <li
+              onClick={() => {
+                window.location.href = "http://localhost:5173/blogs";
+              }}
+              className="mx-5 cursor-pointer"
+            >
+              Blog
+            </li>
+          </ul>
+        </nav>
+        <div className="my-10 flex flex-col w-full justify-around h-full mx-auto">
           {blogs === undefined ? (
             <p>loading...</p>
           ) : (

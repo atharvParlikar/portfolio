@@ -116,7 +116,7 @@ app.delete('/api/v1/blog/:id', async (req: Request, res: Response) => {
   if (deleted) res.send("done betch");
 });
 
-app.get('/api/v1/test', async (res: Response) => {
+app.get('/api/v1/test', async (req: Request, res: Response) => {
   await prisma.post.deleteMany({
     where: {
       blogId: {
