@@ -22,7 +22,7 @@ function App() {
           <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/";
               }}
               className="mr-10 cursor-pointer"
             >
@@ -30,7 +30,7 @@ function App() {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/projects";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/projects";
               }}
               className="mr-10 cursor-pointer"
             >
@@ -38,7 +38,7 @@ function App() {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/blogs";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/blogs";
               }}
               className="mr-10 cursor-pointer"
             >
