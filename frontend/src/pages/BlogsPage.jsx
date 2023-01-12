@@ -5,7 +5,7 @@ const BlogCard = ({ title, summery, blogid }) => {
   return (
     <div className="my-5 mx-10">
       <a
-        href={`http://localhost:5173/blog/${blogid}`}
+        href={`http://portfolio-atharvparlikar.vercel.app/blog/${blogid}`}
         className="block max-w-2xl p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -45,7 +45,7 @@ const BlogsPage = () => {
           <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/";
               }}
               className="mx-5 cursor-pointer"
             >
@@ -53,7 +53,7 @@ const BlogsPage = () => {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/projects";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/projects";
               }}
               className="mx-5 cursor-pointer"
             >
@@ -61,7 +61,7 @@ const BlogsPage = () => {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/blogs";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/blogs";
               }}
               className="mx-5 cursor-pointer"
             >

@@ -6,7 +6,7 @@ const Projects = () => {
           <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/";
               }}
               className="mx-5 cursor-pointer"
             >
@@ -14,7 +14,7 @@ const Projects = () => {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/projects";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/projects";
               }}
               className="mx-5 cursor-pointer"
             >
@@ -22,7 +22,7 @@ const Projects = () => {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://localhost:5173/blogs";
+                window.location.href = "http://portfolio-atharvparlikar.vercel.app/blogs";
               }}
               className="mx-5 cursor-pointer"
             >
