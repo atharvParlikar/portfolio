@@ -23,7 +23,7 @@ const BlogsPage = () => {
   const [blogs, setBlogs] = useState(undefined);
   useEffect(() => {
     (async () => {
-      const response = await axios.get("http://localhost:4000/api/v1/getBlogs");
+      const response = await axios.get("http://24.199.124.186:4000/api/v1/getBlogs");
       setBlogs(response.data.blogs);
       console.log(response.data.blogs);
     })();
