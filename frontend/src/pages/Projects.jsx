@@ -31,12 +31,14 @@ const Projects = () => {
           </ul>
         </nav>
         <div className="h-full mt-36 px-16">
-          <h1 className="text-3xl  font-bold">Under Construction 🚧</h1>
-          <p className="font-thin text-md">
-            Not really under construction but its just that i dont have any good
-            projects to show for so im just in the process of making projects to
-            put it here...
-          </p>
+          <div className="border-2 border-orange-700 rounded">
+            <div className="p-7 cursor-pointer" onClick={() => window.location = "https://github.com/atharvParlikar/disk-cleaner-cli"}>
+              <h1 className="text-2xl">Disk cleaner cli</h1>
+              <p>dick-cleaner-cli is a tool written in rust that can detect duplicate files in your system and give an analysis of storage consumption by filetype.</p>
+              <p>Languages:</p>
+              <p className="ml-6">Rust := 100%</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
