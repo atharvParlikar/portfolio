@@ -2,7 +2,12 @@ const Projects = () => {
   return (
     <div className="w-screen h-screen flex justify-center">
       <div className="container h-4/6 w-8/12 border-2 border-gray-400  rounded-xl font-UbuntuMono flex flex-col my-auto">
-        <nav className="w-11/12 flex justify-center mt-10 mx-auto">
+        <nav className="w-11/12 flex  my-2 mx-auto justify-between">
+          <div className="flex my-2">
+            <div className="mr-2 h-3 w-3 rounded-full bg-red-500"></div>
+            <div className="mr-2 h-3 w-3 rounded-full bg-yellow-500"></div>
+            <div className="mr-2 h-3 w-3 rounded-full bg-green-500"></div>
+          </div>
           <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
             <li
               onClick={() => {
@@ -30,7 +35,10 @@ const Projects = () => {
             </li>
           </ul>
         </nav>
-        <div className="h-full mt-36 px-16">
+
+        <div className="break h-0.5 w-full bg-gray-400"></div>
+
+        <div className="h-full mt-16 px-16">
           <div className="border-2 border-orange-700 rounded">
             <div className="p-7 cursor-pointer" onClick={() => window.location = "https://github.com/atharvParlikar/disk-cleaner-cli"}>
               <h1 className="text-2xl">Disk cleaner cli</h1>
