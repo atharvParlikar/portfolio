@@ -22,7 +22,7 @@ function App() {
           <ul className="flex justify-around my-auto font-UbuntuMono text-lg">
             <li
               onClick={() => {
-                window.location.href = "http://atharvp.dev/";
+                window.location.href = "https://atharvp.dev/";
               }}
               className="mr-10 cursor-pointer"
             >
@@ -30,7 +30,7 @@ function App() {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://atharvp.dev/projects";
+                window.location.href = "https://atharvp.dev/projects";
               }}
               className="mr-10 cursor-pointer"
             >
@@ -38,7 +38,7 @@ function App() {
             </li>
             <li
               onClick={() => {
-                window.location.href = "http://atharvp.dev/blogs";
+                window.location.href = "https://atharvparlikar.hashnode.dev/";
               }}
               className="mr-10 cursor-pointer"
             >
@@ -105,7 +105,7 @@ function App() {
                     Nagpur, Maharashtra, India
                   </a>
                 </p>
-              </div>
+               </div>
               <p className="w-10/12">
                 Hii, i am a second year Computer Science student based in Nagpur
                 (for next 3 years atleast). I know web technologies like HTML,
@@ -130,6 +130,12 @@ function App() {
             <img className="mr-3" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
             <img className="mr-3" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
             <img className="mr-3" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" />
+            <div className="flex">
+              <svg fill="#000000" width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M256,48,496,464H16Z"/>
+              </svg>
+                <h1 className="ml-2">Vercel</h1>
+            </div>
           </div>
         </div>
       </div>
