@@ -1,0 +1,10 @@
+const Mobile = () => {
+  return (
+    <div className="flex">
+      <p>Sorry, my website isn't mobile responseive yet because im too lazy to make it so.</p>
+      <p>Visit it from a Desktop or laptop</p>
+  </div>
+  )
+}
+
+export default Mobile;
