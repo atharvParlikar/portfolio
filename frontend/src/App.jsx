@@ -1,7 +1,22 @@
 import "./App.css";
 import atharv from "./assets/atharv.jpeg";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [meme, setMeme] = useState('');
+  useState(() => {
+    (async () => {
+      const res = await fetch("https://www.reddit.com/r/memes", {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      console.log(res.json());
+    })();
+  }, []);
+
   return (
     <div className="App w-screen h-screen flex justify-center font-UbuntuMono">
       <div className="container w-8/12 border-2 mt-28 rounded-lg border-gray-400 h-fit">
