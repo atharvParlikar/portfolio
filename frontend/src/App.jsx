@@ -1,25 +1,10 @@
 import "./App.css";
 import atharv from "./assets/atharv.jpeg";
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 function App() {
-  const [meme, setMeme] = useState('');
-  useState(() => {
-    (async () => {
-      const res = await fetch("https://www.reddit.com/r/memes", {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      console.log(res.json());
-    })();
-  }, []);
-
   return (
     <div className="App w-screen h-screen flex justify-center font-UbuntuMono">
-      <div className="container w-8/12 border-2 mt-28 rounded-lg border-gray-400 h-fit">
+      <div className="container w-8/12 border-2 mt-28 rounded-lg border-gray-400 h-fit mb-10">
         <div className="h-7 w-full border-2 border-b-gray-400 rounded-t-lg flex flex-col justify-center">
           {/* close buttons */}
           <div className="flex ml-3">
@@ -111,7 +96,9 @@ function App() {
                   <a
                     href="https://goo.gl/maps/P7HkXoHNVmvXh3xP7"
                     target="_blank"
-                  >📍 </a>
+                  >
+                    📍{" "}
+                  </a>
                   <a
                     href="https://goo.gl/maps/P7HkXoHNVmvXh3xP7"
                     target="_blank"
@@ -120,7 +107,7 @@ function App() {
                     Nagpur, Maharashtra, India
                   </a>
                 </p>
-               </div>
+              </div>
               <p className="w-10/12">
                 Hii, i am a second year Computer Science student based in Nagpur
                 (for next 3 years atleast). I know web technologies like HTML,
@@ -136,20 +123,55 @@ function App() {
             />
           </div>
         </div>
+
+        <div className="working-on w-11/12 mx-auto font-2xl mb-7">
+          <h1 className="mb-1 font-bold">{"~ "} Currently working on 👨‍💻</h1>
+          <h1>{"- "}3D renderer</h1>
+          <p>
+            I'm planning to make a 3d renderer not sure how or what exactly but
+            i have a vague idea in mind
+          </p>
+          <p>Languages used: c++</p>
+        </div>
+
         <div className="made-with w-11/12 mx-auto font-2xl font-bold">
-          <h1 className="mb-5">{"~ "}Made with 👨‍💻</h1>
+          <h1 className="mb-5">{"~ "}Made with 🛠️</h1>
           <div className="flex mb-5">
-            <img className="mr-3" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
-            <img className="mr-3" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
-            <img className="mr-3" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB" />
-            <img className="mr-3" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
-            <img className="mr-3" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-            <img className="mr-3" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"
+            />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
+            />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB"
+            />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"
+            />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"
+            />
+            <img
+              className="mr-3"
+              src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"
+            />
             <div className="flex">
-              <svg fill="#000000" width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M256,48,496,464H16Z"/>
+              <svg
+                fill="#000000"
+                width="20px"
+                height="20px"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fill-rule="evenodd" d="M256,48,496,464H16Z" />
               </svg>
-                <h1 className="ml-2">Vercel</h1>
+              <h1 className="ml-2">Vercel</h1>
             </div>
           </div>
         </div>
