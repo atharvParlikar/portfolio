@@ -1,7 +1,21 @@
 import "./App.css";
 import atharv from "./assets/atharv.jpeg";
+import axios from 'axios';
+import { useEffect } from "react";
+import { useState } from "react";
 
 function App() {
+  const [workingOn, setWorkingOn] = useState('');
+
+  useEffect(() => {
+    (
+      async () => {
+        const data = await axios.get("https://raw.githubusercontent.com/atharvParlikar/atharvParlikar/main/README.md");
+        setWorkingOn(data.data.split("\n")[1].split('<br>')[0].slice(2));
+      } 
+    )();
+  }, [])
+
   return (
     <div className="App w-screen h-screen flex justify-center font-UbuntuMono">
       <div className="container w-8/12 border-2 mt-28 rounded-lg border-gray-400 h-fit mb-10">
@@ -126,12 +140,9 @@ function App() {
 
         <div className="working-on w-11/12 mx-auto font-2xl mb-7">
           <h1 className="mb-1 font-bold">{"~ "} Currently working on 👨‍💻</h1>
-          <h1>{"- "}3D renderer</h1>
-          <p>
-            I'm planning to make a 3d renderer not sure how or what exactly but
-            i have a vague idea in mind
-          </p>
-          <p>Languages used: c++</p>
+          <p>{
+            workingOn == '' ? 'loading' : workingOn
+          }</p>
         </div>
 
         <div className="made-with w-11/12 mx-auto font-2xl font-bold">
@@ -169,7 +180,7 @@ function App() {
                 viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path fill-rule="evenodd" d="M256,48,496,464H16Z" />
+                <path fillRule="evenodd" d="M256,48,496,464H16Z" />
               </svg>
               <h1 className="ml-2">Vercel</h1>
             </div>
