@@ -48,6 +48,33 @@ const Projects = () => {
             </div>
           </div>
         </div>
+
+        <div className="h-full mt-16 px-16">
+          <div className="border-2 border-green-700 rounded">
+            <div className="p-7 cursor-pointer" onClick={() => window.location = "https://github.com/atharvParlikar/NeuraForge"}>
+              <h1 className="text-2xl">NeuraForge</h1>
+              <p>A low-level Neural Network / autograd library that does not hide any part of training a Neural Network</p>
+              <p>Languages:</p>
+              <p className="ml-6">Python := 100%</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="h-full mt-16 px-16">
+          <div className="border-2 border-blue-500 rounded">
+            <div className="p-7 cursor-pointer" onClick={() => window.location = "https://github.com/atharvParlikar/chess"}>
+              <h1 className="text-2xl">chess</h1>
+              <p>An Implementation of a basic multiplayer chess game with React as frontend and express.js with socket.io for socket connections</p>
+              <p>Languages:</p>
+              <p className="ml-6">Javascript := 94%</p>
+              <br />
+              <p className="ml-6">HTML := 3%</p>
+              <br />
+              <p className="ml-6">CSS := 3%</p>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   );
