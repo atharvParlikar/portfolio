@@ -60,7 +60,7 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className="h-full mt-16 px-16">
+        <div className="h-full mt-16 px-16 mb-16">
           <div className="border-2 border-blue-500 rounded">
             <div className="p-7 cursor-pointer" onClick={() => window.location = "https://github.com/atharvParlikar/chess"}>
               <h1 className="text-2xl">chess</h1>
