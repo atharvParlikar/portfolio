@@ -1,7 +1,7 @@
 const Projects = () => {
   return (
     <div className="w-screen h-screen flex justify-center">
-      <div className="container h-4/6 w-8/12 border-2 border-gray-400  rounded-xl font-UbuntuMono flex flex-col my-auto">
+      <div className="container w-8/12 border-2 border-gray-400  rounded-xl font-UbuntuMono flex flex-col my-auto">
         <nav className="w-11/12 flex  my-2 mx-auto justify-between">
           <div className="flex my-2">
             <div className="mr-2 h-3 w-3 rounded-full bg-red-500"></div>
@@ -67,9 +67,7 @@ const Projects = () => {
               <p>An Implementation of a basic multiplayer chess game with React as frontend and express.js with socket.io for socket connections</p>
               <p>Languages:</p>
               <p className="ml-6">Javascript := 94%</p>
-              <br />
               <p className="ml-6">HTML := 3%</p>
-              <br />
               <p className="ml-6">CSS := 3%</p>
             </div>
           </div>
