@@ -1,16 +1,77 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../data/projects';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
+const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>) => {
+  return data.draft !== true;
+});
+
+const recentPosts = allPosts
+  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
+  .slice(0, 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Atharv Parlikar">
+	<main class="max-w-xl mx-auto px-6 py-16 md:py-24">
+		
+		<header class="mb-16">
+			<h1 class="text-2xl font-normal mb-4 text-neutral-900">Atharv Parlikar</h1>
+			<p class="text-neutral-700 leading-relaxed mb-6">
+				Building real-time infrastructure and developer tools. I care about type safety, clean abstractions, and making WebSockets not suck. Writing Rust and TypeScript.
+			</p>
+			<div class="flex gap-4 text-[15px]">
+				<a href="https://github.com/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">GitHub</a>
+				<a href="https://twitter.com/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Twitter</a>
+				<a href="https://linkedin.com/in/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">LinkedIn</a>
+				<a href="mailto:atharv@example.com" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Email</a>
+			</div>
+		</header>
+
+		<section class="mb-16">
+			<h2 class="text-lg font-normal mb-6 text-neutral-900">Projects</h2>
+			<div class="space-y-8">
+				{projects.map((project) => (
+					<div>
+						<div class="flex items-baseline justify-between mb-1">
+							<h3 class="font-normal text-neutral-900">{project.title}</h3>
+							<span class="text-sm text-neutral-400">{project.year}</span>
+						</div>
+						<p class="text-neutral-700 text-[15px] mb-2 leading-relaxed">{project.description}</p>
+						<div class="flex gap-3 text-[15px]">
+							{project.github && (
+								<a href={project.github} class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">
+									GitHub
+								</a>
+							)}
+							{project.link && (
+								<a href={project.link} class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">
+									Live
+								</a>
+							)}
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section>
+			<div class="flex items-baseline justify-between mb-6">
+				<h2 class="text-lg font-normal text-neutral-900">Writing</h2>
+				<a href="/blog" class="text-[15px] text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">View all</a>
+			</div>
+			<div class="space-y-6">
+				{recentPosts.map((post: CollectionEntry<'blog'>) => (
+					<a href={`/blog/${post.data.postSlug}`} class="block group">
+						<div class="flex items-baseline justify-between mb-1">
+							<h3 class="font-normal text-neutral-900 group-hover:text-orange-600">{post.data.title}</h3>
+							<span class="text-sm text-neutral-400 whitespace-nowrap ml-4">{post.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+						</div>
+						<p class="text-neutral-700 text-[15px] leading-relaxed">{post.data.description}</p>
+					</a>
+				))}
+			</div>
+		</section>
+
+	</main>
+</Layout>
