@@ -5,6 +5,7 @@ pubDatetime: 2025-06-04
 postSlug: fixing-websockets
 featured: false
 draft: false
+category: technical
 tags:
   - technical
   - websockets

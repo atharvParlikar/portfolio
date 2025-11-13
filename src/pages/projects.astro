@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { projects } from '../data/projects';
+---
+
+<Layout title="Projects - Atharv Parlikar">
+	<main class="max-w-xl mx-auto px-6 py-16 md:py-24">
+		
+		<header class="mb-12">
+			<a href="/" class="text-[15px] text-neutral-600 hover:text-orange-600 mb-4 inline-block">← Back</a>
+			<h1 class="text-2xl font-normal text-neutral-900">Projects</h1>
+		</header>
+
+		<div class="space-y-8">
+			{projects.map((project) => (
+				<div>
+					<div class="flex items-baseline justify-between mb-1">
+						<h3 class="font-normal text-neutral-900">{project.title}</h3>
+						<span class="text-sm text-neutral-400">{project.year}</span>
+					</div>
+					<p class="text-neutral-700 text-[15px] mb-2 leading-relaxed">{project.description}</p>
+					<div class="flex gap-3 text-[15px]">
+						{project.github && (
+							<a href={project.github} class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">
+								GitHub
+							</a>
+						)}
+						{project.link && (
+							<a href={project.link} class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">
+								Live
+							</a>
+						)}
+					</div>
+				</div>
+			))}
+		</div>
+
+	</main>
+</Layout>
+

@@ -7,9 +7,17 @@ const allPosts = await getCollection('blog', ({ data }: CollectionEntry<'blog'>)
   return data.draft !== true;
 });
 
-const recentPosts = allPosts
-  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
-  .slice(0, 3);
+const technicalPosts = allPosts
+  .filter(post => post.data.category === 'technical')
+  .sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
+  .slice(0, 2);
+
+const essayPosts = allPosts
+  .filter(post => post.data.category === 'essay')
+  .sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
+  .slice(0, 2);
+
+const limitedProjects = projects.slice(0, 2);
 ---
 
 <Layout title="Atharv Parlikar">
@@ -22,16 +30,18 @@ const recentPosts = allPosts
 			</p>
 			<div class="flex gap-4 text-[15px]">
 				<a href="https://github.com/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">GitHub</a>
-				<a href="https://twitter.com/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Twitter</a>
-				<a href="https://linkedin.com/in/atharvparlikar" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">LinkedIn</a>
-				<a href="mailto:atharv@example.com" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Email</a>
+				<a href="https://twitter.com/atharvparlikar01" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Twitter</a>
+				<a href="mailto:atharvparlikar@gmail.com" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Email</a>
 			</div>
 		</header>
 
 		<section class="mb-16">
-			<h2 class="text-lg font-normal mb-6 text-neutral-900">Projects</h2>
+			<div class="flex items-baseline justify-between mb-6">
+				<h2 class="text-lg font-normal text-neutral-900">Projects</h2>
+				<a href="/projects" class="text-[15px] text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">View all</a>
+			</div>
 			<div class="space-y-8">
-				{projects.map((project) => (
+				{limitedProjects.map((project) => (
 					<div>
 						<div class="flex items-baseline justify-between mb-1">
 							<h3 class="font-normal text-neutral-900">{project.title}</h3>
@@ -55,13 +65,31 @@ const recentPosts = allPosts
 			</div>
 		</section>
 
-		<section>
+		<section class="mb-16">
 			<div class="flex items-baseline justify-between mb-6">
-				<h2 class="text-lg font-normal text-neutral-900">Writing</h2>
-				<a href="/blog" class="text-[15px] text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">View all</a>
+				<h2 class="text-lg font-normal text-neutral-900">Technical Writing</h2>
+				<a href="/blog?category=technical" class="text-[15px] text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">View all</a>
 			</div>
 			<div class="space-y-6">
-				{recentPosts.map((post: CollectionEntry<'blog'>) => (
+				{technicalPosts.map((post: CollectionEntry<'blog'>) => (
+					<a href={`/blog/${post.data.postSlug}`} class="block group">
+						<div class="flex items-baseline justify-between mb-1">
+							<h3 class="font-normal text-neutral-900 group-hover:text-orange-600">{post.data.title}</h3>
+							<span class="text-sm text-neutral-400 whitespace-nowrap ml-4">{post.data.pubDatetime.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+						</div>
+						<p class="text-neutral-700 text-[15px] leading-relaxed">{post.data.description}</p>
+					</a>
+				))}
+			</div>
+		</section>
+
+		<section>
+			<div class="flex items-baseline justify-between mb-6">
+				<h2 class="text-lg font-normal text-neutral-900">Essays</h2>
+				<a href="/blog?category=essay" class="text-[15px] text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">View all</a>
+			</div>
+			<div class="space-y-6">
+				{essayPosts.map((post: CollectionEntry<'blog'>) => (
 					<a href={`/blog/${post.data.postSlug}`} class="block group">
 						<div class="flex items-baseline justify-between mb-1">
 							<h3 class="font-normal text-neutral-900 group-hover:text-orange-600">{post.data.title}</h3>

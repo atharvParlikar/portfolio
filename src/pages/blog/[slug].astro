@@ -45,14 +45,53 @@ const { Content } = await post.render();
 		margin-top: 1.25em;
 		margin-bottom: 1.25em;
 		line-height: 1.7;
+		font-size: 1rem;
 	}
-	
-	.prose h3 {
-		font-size: 1.125rem;
+
+	.prose h1 {
+		font-size: 1.5rem;
 		font-weight: 600;
 		margin-top: 2em;
 		margin-bottom: 1em;
 		color: #171717;
+		line-height: 1.3;
+	}
+	
+	.prose h2 {
+		font-size: 1.35rem;
+		font-weight: 600;
+		margin-top: 1.8em;
+		margin-bottom: 0.9em;
+		color: #171717;
+		line-height: 1.3;
+	}
+	
+	.prose h3 {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-top: 1.6em;
+		margin-bottom: 0.8em;
+		color: #171717;
+		line-height: 1.4;
+	}
+
+	.prose h4 {
+		font-size: 1.1rem;
+		font-weight: 600;
+		margin-top: 1.5em;
+		margin-bottom: 0.75em;
+		color: #171717;
+		line-height: 1.4;
+	}
+
+	.prose h5,
+	.prose h6 {
+		font-size: 1rem;
+		font-weight: 600;
+		margin-top: 1.5em;
+		margin-bottom: 0.75em;
+		color: #171717;
+		line-height: 1.4;
 	}
 	
 	.prose strong {
@@ -70,6 +109,34 @@ const { Content } = await post.render();
 	.prose a:hover {
 		color: #c2410c;
 	}
+
+	.prose ul,
+	.prose ol {
+		margin-top: 1.25em;
+		margin-bottom: 1.25em;
+		padding-left: 1.5em;
+	}
+
+	.prose li {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		line-height: 1.7;
+	}
+
+	.prose img {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		border-radius: 4px;
+	}
+
+	.prose blockquote {
+		border-left: 3px solid #e7e5e4;
+		padding-left: 1em;
+		margin-top: 1.5em;
+		margin-bottom: 1.5em;
+		font-style: italic;
+		color: #525252;
+	}
 	
 	.prose code {
 		background: #f5f5f4;
@@ -77,6 +144,7 @@ const { Content } = await post.render();
 		border-radius: 3px;
 		font-size: 0.9em;
 		font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+		color: #171717;
 	}
 	
 	.prose pre {

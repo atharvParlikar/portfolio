@@ -2,21 +2,36 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+const category = Astro.url.searchParams.get('category');
+
 const allPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-const sortedPosts = allPosts.sort((a, b) => 
+let filteredPosts = allPosts;
+if (category === 'technical' || category === 'essay') {
+  filteredPosts = allPosts.filter(post => post.data.category === category);
+}
+
+const sortedPosts = filteredPosts.sort((a, b) => 
   b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime()
 );
+
+const title = category === 'technical' ? 'Technical Writing' : category === 'essay' ? 'Essays' : 'Writing';
 ---
 
-<Layout title="Writing">
+<Layout title={title}>
 	<main class="max-w-xl mx-auto px-6 py-16 md:py-24">
 		
 		<header class="mb-12">
 			<a href="/" class="text-[15px] text-neutral-600 hover:text-orange-600 mb-4 inline-block">← Back</a>
-			<h1 class="text-2xl font-normal text-neutral-900">Writing</h1>
+			<h1 class="text-2xl font-normal text-neutral-900">{title}</h1>
+			{!category && (
+				<div class="flex gap-4 text-[15px] mt-4">
+					<a href="/blog?category=technical" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Technical</a>
+					<a href="/blog?category=essay" class="text-orange-600 hover:text-orange-700 underline decoration-1 underline-offset-2">Essays</a>
+				</div>
+			)}
 		</header>
 
 		<div class="space-y-8">
@@ -35,4 +50,3 @@ const sortedPosts = allPosts.sort((a, b) =>
 
 	</main>
 </Layout>
-

@@ -21,6 +21,7 @@ title: Your Post Title
 author: Your Name
 pubDatetime: 2025-01-15
 postSlug: your-post-slug
+category: technical  # or 'essay'
 featured: false
 draft: false
 tags:
@@ -31,6 +32,14 @@ description: Brief description of the post
 
 Your content here...
 ```
+
+## Structure
+
+- Homepage shows 2 most recent projects, 2 technical posts, and 2 essays
+- `/projects` - All projects
+- `/blog?category=technical` - All technical writing
+- `/blog?category=essay` - All essays
+- `/blog` - All posts with category filters
 
 ## Deploy
 
