@@ -29,7 +29,7 @@ You can think of a model like a very large function. You give it input, text, im
 
 At the beginning, those numbers are random. The model is useless. It gives nonsense. Then comes training.
 
-**Training** is the process of slowly adjusting those numbers so that the model's outputs become more and more correct or useful. For a language model, that means predicting the next word well. For an image model, that means generating images that match descriptions. For a video model, it means producing frames that look real and consistent.
+**Training** is the process of slowly adjusting those numbers so that the model's outputs become more and more correct or useful. For a language model, that means predicting the next word well. For an image model, that means generating visuals that match descriptions. For a video model, it means producing frames that are temporally consistent and realistic.
 
 Training is expensive. Very expensive. This is why companies like OpenAI, Google, and Anthropic matter. They're not just selling APIs, they own and operate massive training pipelines that turn random numbers into powerful models. Those trained weights are the real asset.
 
@@ -37,11 +37,11 @@ Training is expensive. Very expensive. This is why companies like OpenAI, Google
 
 ## What does "pre-trained" actually mean?
 
-In real AI terminology, **pre-training** means the big, expensive, initial training run where a model learns from huge amounts of data. It's the phase where GPT, Claude, or any other foundation model is created.
+In real AI terminology, **pre-training** means the big, expensive, initial training run where a model learns from huge amounts of data. It's the phase where GPT, Claude, DALL-E, Stable Diffusion, or any other foundation model is created.
 
-So when a startup says "we use a pre-trained model," what they usually mean is "we call OpenAI or some other provider's API."
+So when a startup says "we use a pre-trained model," what they usually mean is "we call OpenAI, Anthropic, Midjourney, or some other provider's API."
 
-That's not wrong, but it's not particularly meaningful either. Every AI product that uses GPT or similar is using a pre-trained model. It's like saying "we use electricity", true, but not a differentiator. What matters is what you build on top of it.
+That's not wrong, but it's not particularly meaningful either. Every AI product using GPT, Claude, Midjourney, or Runway is using pre-trained models. It's like saying "we use electricity", true, but not a differentiator. What matters is what you build on top of it.
 
 ---
 
@@ -52,7 +52,7 @@ There are two very different things that get mixed up all the time:
 - **Training** means changing the weights
 - **Inference** means using the weights
 
-When you send a prompt to an API and get an answer back, you're doing inference. You're not training anything. You're just running your input through a fixed set of numbers that someone else trained.
+When you send a prompt to an API and get an answer back, you're doing inference. When you generate an image, edit a video, or transcribe audio, that's all inference. You're not training anything. You're just running your input through a fixed set of numbers that someone else trained.
 
 This distinction matters because it defines who owns what. If you're only doing inference, you don't own the model, you're renting intelligence. And that's fine. Most successful AI startups today do exactly that. But you should be clear about it.
 
@@ -66,10 +66,10 @@ Here's the critical part: if you don't have access to the weights, you cannot do
 
 Most closed models today don't give you their raw weights. At best, they let you upload examples or preferences, which influence how the model behaves, but the underlying numbers are still controlled by them. That's not the same thing as fine-tuning in the original sense, it's closer to instruction tuning or style guidance.
 
-So if you say "we fine-tuned GPT," what you're really claiming is that you were able to change OpenAI's core model. In almost all cases, that's not true. What you probably did was give it better prompts, examples, memory, or retrieval. That's powerful and valuable work, but it's not the same thing.
+So if you say "we fine-tuned GPT," what you're really claiming is that you were able to change OpenAI's core model. In almost all cases, that's not true. What you probably did was give it better prompts, examples, memory, or retrieval. The same applies to image and video models, using ControlNet, LoRAs, or style references isn't fine-tuning the base model. That's powerful and valuable work, but it's not the same thing.
 
 **True fine-tuning requires:**
-- Direct access to model weights (open-source models like Llama, Mistral)
+- Direct access to model weights (open-source models like Llama for text, Stable Diffusion for images, or CogVideoX for video)
 - Or specialized fine-tuning APIs that actually update weights for your use case
 - Infrastructure to run the training process
 - Data and expertise to do it well
@@ -86,6 +86,80 @@ So again, it's about being honest about where you sit on the stack.
 
 ---
 
+## Context: The Model's Working Memory
+
+When you send a prompt to an AI model, the model doesn't actually "remember" your previous conversations or have access to external information. Everything it needs to work with must be included in what you send it. This is called **context**.
+
+Think of context as the model's working memory for that specific request. It includes:
+- The system instructions you set
+- Your current prompt or input (text, image, video)
+- Any conversation history you include
+- Any documents, reference images, or data you provide
+
+The model can only "see" what's in the context. If you want it to know about your company's specific data, your previous conversation, reference footage, or any external information, you have to put it there.
+
+### Context Window
+
+Every model has a **context window**, a hard limit on how much information it can process at once. For text models, this is measured in tokens (roughly, words or word fragments). For multimodal models, images and video frames also consume tokens.
+
+For example:
+- GPT-5 has expanded context capabilities for handling longer conversations and multimodal inputs
+- Claude 3.5 Sonnet has a 200K token context window (~150,000 words)
+- Gemini 2.0 can process up to 2 million tokens, including long videos and documents
+
+This matters because:
+- Larger context = more expensive API calls
+- Images and video frames consume significant portions of the context window
+- You need to fit everything (instructions, conversation history, reference media, retrieved data) within this limit
+- Running out of context means you have to start dropping information
+
+The context window is both powerful and limiting. You can include entire documents or multiple reference images, but you're still constrained by that ceiling.
+
+### RAG: Retrieval-Augmented Generation
+
+So you want your AI to know about your company's video library, brand guidelines, product images, or customer data. But you can't fit everything into the context window every time. This is where **RAG** comes in.
+
+RAG is probably the most common architecture pattern for AI products right now. Here's how it works:
+
+1. **Store your data** in a searchable format (usually a vector database, text, images, video metadata)
+2. **When a user makes a request**, search your database for relevant information
+3. **Retrieve** only the most relevant pieces (documents, reference images, video clips)
+4. **Insert** those pieces into the context along with the user's input
+5. **Generate** an answer or output using both the retrieved data and the model's general knowledge
+
+**Why RAG instead of fine-tuning?**
+- Much cheaper (no training costs)
+- Easier to update (just change your database)
+- More transparent (you can see what information was retrieved)
+- Works with closed models via API
+- Can be updated in real-time
+
+**What RAG is good for:**
+- Company-specific knowledge and brand guidelines
+- Product documentation and image libraries
+- Reference footage and video assets
+- Customer data
+- Recent information
+- Large, changing datasets
+
+### Context Engineering (aka Prompt Engineering)
+
+Now that you understand context and RAG, you can see why **context engineering** (often called prompt engineering) is real technical work, not just "writing good prompts."
+
+Context engineering is about:
+- Structuring your system prompts to guide behavior
+- Deciding what information to include and what to leave out (especially critical for expensive multimodal inputs)
+- Ordering information effectively (models pay more attention to the beginning and end)
+- Balancing context window usage with cost (images and video are expensive)
+- Optimizing retrieval to get the most relevant information (text, images, or video clips)
+- Managing conversation history efficiently
+- Formatting data so the model can use it well
+- Choosing when to include reference images versus text descriptions
+
+This is where most AI startups actually spend their technical effort, and it's legitimate differentiation. Two products using the same model can perform vastly differently based on how well they engineer their context.
+
+---
+
 ## The AI stack, simplified
 
 You can think of the modern GenAI world as three layers:
@@ -94,7 +168,7 @@ You can think of the modern GenAI world as three layers:
 
 **In the middle is the API and inference layer.** This is where you send prompts and get outputs. This is where most startups plug in. You're using trained models but not changing them.
 
-**At the top is the product layer.** This is where memory, prompts, workflows, brand rules, retrieval systems, and user experience live. This is where your actual product differentiation happens.
+**At the top is the product layer.** This is where memory, prompts, workflows, brand rules, retrieval systems, video processing pipelines, image generation workflows, and user experience live. This is where your actual product differentiation happens.
 
 Most startups live at the top and the middle. Very few live at the bottom. That's not a weakness, it's just reality. Your differentiation usually comes from how you structure tasks, data, and user experience, not from owning a giant model.
 
@@ -110,8 +184,9 @@ The goal is to be specific about your actual architecture rather than hiding beh
 
 **Try something like:**
 - "We use GPT-5 via API with a custom prompt engineering layer and proprietary retrieval system"
-- "We fine-tuned Llama 3 on our domain-specific dataset using our own infrastructure"
-- "We built a multi-agent system that orchestrates API calls with custom memory and state management"
+- "We fine-tuned Stable Diffusion on our brand-specific image dataset using our own infrastructure"
+- "We built a multi-agent system that orchestrates video generation with custom memory and quality control"
+- "We use Runway and Midjourney APIs with a proprietary pipeline for brand consistency and style control"
 
 This tells the truth. It shows you know where your value is. And it doesn't pretend you own something you don't.
 
@@ -128,7 +203,3 @@ If you don't own the numbers, you don't own the model. You own how you use it. A
 Understanding this stack helps you communicate better, make smarter technical decisions, and focus your efforts where they actually create value. You don't need to own the foundation models to build valuable AI products, most successful AI companies don't.
 
 What matters is being clear about your architecture and honest about where your differentiation lives. Whether it's in your prompts, your data pipeline, your UX, or your workflow automation, own it clearly.
-
----
-
-*Understanding the terminology isn't about sounding impressive, it's about building clarity and making informed decisions.*
