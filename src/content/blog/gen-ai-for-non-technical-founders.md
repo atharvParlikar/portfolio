@@ -117,30 +117,11 @@ The context window is both powerful and limiting. You can include entire documen
 
 ### RAG: Retrieval-Augmented Generation
 
-So you want your AI to know about your company's video library, brand guidelines, product images, or customer data. But you can't fit everything into the context window every time. This is where **RAG** comes in.
+So you want your AI to know about your company's video library, brand guidelines, or product images. But you can't fit everything into the context window every time. This is where RAG comes in.
 
-RAG is probably the most common architecture pattern for AI products right now. Here's how it works:
+RAG works by storing your data in a searchable format, then retrieving only the most relevant pieces when needed and inserting them into the context along with the user's input. Instead of fine-tuning, you're dynamically pulling in the right information at inference time.
 
-1. **Store your data** in a searchable format (usually a vector database, text, images, video metadata)
-2. **When a user makes a request**, search your database for relevant information
-3. **Retrieve** only the most relevant pieces (documents, reference images, video clips)
-4. **Insert** those pieces into the context along with the user's input
-5. **Generate** an answer or output using both the retrieved data and the model's general knowledge
-
-**Why RAG instead of fine-tuning?**
-- Much cheaper (no training costs)
-- Easier to update (just change your database)
-- More transparent (you can see what information was retrieved)
-- Works with closed models via API
-- Can be updated in real-time
-
-**What RAG is good for:**
-- Company-specific knowledge and brand guidelines
-- Product documentation and image libraries
-- Reference footage and video assets
-- Customer data
-- Recent information
-- Large, changing datasets
+This is the most common architecture pattern for AI products because it's cheaper than fine-tuning, easier to update, and works with closed models via API. It's particularly useful for company-specific knowledge, reference footage, image libraries, and any data that changes frequently.
 
 ### Context Engineering (aka Prompt Engineering)
 
