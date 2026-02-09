@@ -1,6 +1,6 @@
 ---
 title: Intelligence is Just a Mathematical Equation
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2023-08-27T12:15:39.893Z
 postSlug: intelligence-is-just-a-mathematical-equation
 featured: false

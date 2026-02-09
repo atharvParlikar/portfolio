@@ -1,6 +1,6 @@
 ---
 title: My attempt at fixing websockets
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2025-06-04
 postSlug: fixing-websockets
 featured: false

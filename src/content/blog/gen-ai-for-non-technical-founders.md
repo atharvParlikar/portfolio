@@ -1,6 +1,6 @@
 ---
 title: GenAi Jargon for Non-Technical Founders
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2025-12-31T03:35:31.740Z
 postSlug: gen-ai-for-non-technical-founders
 featured: true

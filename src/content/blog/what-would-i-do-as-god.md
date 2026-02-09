@@ -1,6 +1,6 @@
 ---
 title: What would I do if I became god
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2025-05-23T16:42:39.893Z
 postSlug: what-i-would-do-as-god
 category: essay

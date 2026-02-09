@@ -1,6 +1,6 @@
 ---
 title: Be Bored
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2025-05-24
 postSlug: be-bored
 featured: false

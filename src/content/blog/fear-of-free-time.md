@@ -1,6 +1,6 @@
 ---
 title: Fear of Free Time
-author: Atharv Parlikar
+author: Chetan Vasvani
 pubDatetime: 2025-05-25
 postSlug: fear-of-free-time
 featured: false
